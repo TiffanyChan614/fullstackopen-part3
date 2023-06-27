@@ -1,0 +1,27 @@
+{
+	"name": "phonebookbackend",
+	"version": "1.0.0",
+	"description": "",
+	"main": "index.js",
+	"scripts": {
+		"start": "node index.js",
+		"test": "echo \"Error: no test specified\" && exit 1",
+		"dev": "nodemon index.js"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/TiffanyChan614/fullstackopen-part3.git"
+	},
+	"author": "Tiffany Chan",
+	"license": "ISC",
+	"bugs": {
+		"url": "https://github.com/TiffanyChan614/fullstackopen-part3/issues"
+	},
+	"homepage": "https://github.com/TiffanyChan614/fullstackopen-part3#readme",
+	"dependencies": {
+		"express": "^4.18.2"
+	},
+	"devDependencies": {
+		"nodemon": "^2.0.22"
+	}
+}
