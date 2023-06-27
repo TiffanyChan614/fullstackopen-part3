@@ -1,5 +1,6 @@
 const express = require('express')
 const app = express()
+const morgan = require('morgan')
 
 const generateId = () => {
 	const maxId = persons.length > 0 ? Math.max(...persons.map((p) => p.id)) : 0
@@ -7,6 +8,15 @@ const generateId = () => {
 }
 
 app.use(express.json())
+morgan.token('data', (req, res) => {
+	if (req.method === 'POST') {
+		return JSON.stringify(req.body)
+	}
+	return ''
+})
+app.use(
+	morgan(':method :url :status :res[content-length] - :response-time ms :data')
+)
 
 let persons = [
 	{
@@ -95,6 +105,12 @@ app.post('/api/persons', (request, response) => {
 
 	response.json(person)
 })
+
+const unknownEndPoint = (request, response) => {
+	response.status(404).send({ error: 'unknown endpoint' })
+}
+
+app.use(unknownEndPoint)
 
 const PORT = 3001
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`))
