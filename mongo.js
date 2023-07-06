@@ -41,5 +41,5 @@ if (process.argv.length == 5) {
 		'Please enter the correct number of arguments\n',
 		'Format: node mongo.js <password> <name> <number>'
 	)
-	mongoose.connection.close()
+	process.exit(1)
 }
