@@ -5,7 +5,7 @@ const cors = require('cors')
 const Persons = require('./models/persons')
 require('dotenv').config()
 
-const unknownEndPoint = (response) => {
+const unknownEndPoint = (request, response) => {
   response.status(404).send({ error: 'unknown endpoint' })
 }
 
@@ -33,7 +33,7 @@ app.use(
 
 const date = new Date()
 
-app.get('/api/persons', (response, next) => {
+app.get('/api/persons', (request, response, next) => {
   Persons.find({})
     .then((person) => {
       response.json(person)
@@ -41,7 +41,7 @@ app.get('/api/persons', (response, next) => {
     .catch((error) => next(error))
 })
 
-app.get('/api/info', (response, next) => {
+app.get('/api/info', (request, response, next) => {
   Persons.estimatedDocumentCount({})
     .then((count) => {
       const info = `
